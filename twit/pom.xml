@@ -121,7 +121,7 @@
 		        <url>http://localhost:8080/manager/text</url>
 		        <server>tomcat</server>
 		        <username>admin</username>
-		        <password>8515111q</password>
+		        <password>password</password>
 		        <path>/twit</path>
 		     </configuration>
 		 	</plugin>
