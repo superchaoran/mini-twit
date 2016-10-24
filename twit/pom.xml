@@ -106,16 +106,17 @@
   <build>
     <finalName>twit</finalName>
 	  <plugins>
-	  	<plugin>
-		<groupId>org.apache.tomcat.maven</groupId>
-		<artifactId>tomcat7-maven-plugin</artifactId>
-		<version>2.2</version>
-		<configuration>
-			<url>http://localhost:8080/manager/text</url>
-			<server>TomcatServer</server>
-			<path>/twit</path>
-		</configuration>
-		</plugin>
+		 <groupId>org.apache.tomcat.maven</groupId>
+		    <artifactId>tomcat7-maven-plugin</artifactId>
+		    <version>${tomcat7-maven-plugin.version}</version>
+		    <configuration>
+		        <url>http://localhost:8080/manager/text</url>
+		        <server>tomcat</server>
+		        <username>admin1</username>
+		        <password>admin1</password>
+		        <path>/${project.artifactId}</path>
+		        <update>true</update>
+		     </configuration>
 	  </plugins>
   </build>
 </project>
