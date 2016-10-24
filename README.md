@@ -1,4 +1,4 @@
-# Twit, Registration and Login Example with Spring MVC 4, Spring Security, Spring Data JPA, XML Configuration, Maven, JSP, and MySQL.
+# Twit Example with Spring MVC 4, Spring Security, Spring Data JPA, XML Configuration, Maven, JSP, and MySQL.
 
 ## Guide
 https://twit.com/registration-and-login-example-with-spring-xml-configuration-maven-jsp-and-mysql/
