@@ -109,16 +109,16 @@
 	  	<plugin>
 		 <groupId>org.apache.tomcat.maven</groupId>
 		    <artifactId>tomcat7-maven-plugin</artifactId>
-		    <version>${tomcat7-maven-plugin.version}</version>
+		    <version>2.2</version>
 		    <configuration>
 		        <url>http://localhost:8080/manager/text</url>
 		        <server>tomcat</server>
-		        <username>admin1</username>
-		        <password>admin1</password>
-		        <path>/${project.artifactId}</path>
+		        <username>admin</username>
+		        <password>8515111q</password>
+		        <path>/twit</path>
 		        <update>true</update>
 		     </configuration>
-		 </plugin>
+		 	</plugin>
 	  </plugins>
   </build>
 </project>
