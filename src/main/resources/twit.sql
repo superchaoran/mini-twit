@@ -6,6 +6,7 @@ CREATE TABLE tweets
   tweet_id INT(11) NOT NULL AUTO_INCREMENT,
   tweet VARCHAR(255) NOT NULL,
   user_id INT(11) NOT NULL,
+  date_created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (tweet_id)
 );
 
