@@ -1,0 +1,13 @@
+-- TABLE TWEETS
+
+CREATE TABLE tweets
+(
+  tweet_id INT(11) NOT NULL AUTO_INCREMENT,
+  tweet VARCHAR(255) NOT NULL,
+  user_id INT(11) NOT NULL,
+  PRIMARY KEY (tweet_id)
+);
+
+-- CONSTRAINTS
+
+ALTER TABLE tweets ADD CONSTRAINT tweets_fk1 FOREIGN KEY (user_id) REFERENCES user(id);

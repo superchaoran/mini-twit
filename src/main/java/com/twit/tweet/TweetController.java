@@ -8,8 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import java.util.List;
 
 @Controller
@@ -17,12 +15,22 @@ public class TweetController {
 
     @Autowired
     private TweetDAO tweetDAO;
-
-    // Creat Tweet
-    @RequestMapping(value = "/twit/create", method = RequestMethod.POST, produces = {"application/json","application/xml"})
+    
+    
+//    @RequestMapping(value = "/tweet/create", method = RequestMethod.GET)
+//    @ResponseBody
+//    public ResponseEntity createTweet() {
+//            return ResponseEntity.ok("{\"message\": \"Success!\"}");
+//    }
+    
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+    // NEW TWEET
+    @SuppressWarnings("rawtypes")
+	@RequestMapping(value = "/tweet/create", method = RequestMethod.POST, produces = {"application/json","application/xml"})
     @ResponseBody
     public ResponseEntity createTweet(@ModelAttribute("tweetForm") TweetModel tweet) {
-        int result = tweetDAO.add(tweet);
+    	System.out.println("here");
+        int result = tweetDAO.create(tweet);
         if (result == 1) {
             return ResponseEntity.ok("{\"message\": \"Success!\"}");
         }
@@ -30,6 +38,7 @@ public class TweetController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"message\": \"Error!\"}");
         }
     }
+        
 
     // GET TWEETS OF A USER
     @RequestMapping(value = "/tweets/{username}/formatted", method = RequestMethod.GET)

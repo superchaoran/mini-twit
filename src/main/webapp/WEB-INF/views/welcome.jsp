@@ -34,6 +34,8 @@
         <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
 
     </c:if>
+    
+    <jsp:include page="tweet/CreateTweet.jsp" />
 
 </div>
 <!-- /container -->

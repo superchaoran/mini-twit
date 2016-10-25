@@ -7,11 +7,16 @@
 		http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <http auto-config="true">
+    <http auto-config="true" use-expressions="true">
+    	<csrf disabled="true"/>
         <intercept-url pattern="/" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/welcome" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/tweet/" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/tweet/**" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/tweets/**" access="hasRole('ROLE_USER')" />
         <form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
         <logout logout-success-url="/login?logout" />
+        <access-denied-handler error-page="/403" />
     </http>
 
     <authentication-manager alias="authenticationManager">

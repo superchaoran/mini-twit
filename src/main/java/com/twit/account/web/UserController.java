@@ -4,13 +4,18 @@ import com.twit.account.model.User;
 import com.twit.account.service.SecurityService;
 import com.twit.account.service.UserService;
 import com.twit.account.validator.UserValidator;
+import com.twit.tweet.TweetModel;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class UserController {
@@ -29,6 +34,7 @@ public class UserController {
 
         return "registration";
     }
+
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
@@ -60,4 +66,5 @@ public class UserController {
     public String welcome(Model model) {
         return "welcome";
     }
+    
 }

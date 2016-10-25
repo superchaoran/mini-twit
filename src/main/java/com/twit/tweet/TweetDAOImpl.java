@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.twit.account.model.User;
 import com.twit.tweet.TweetModel;
 
 import org.springframework.dao.DataIntegrityViolationException;
@@ -16,20 +17,20 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class TweetDAOImpl implements TweetDAO {
 
-    private DataSource dataSource;
+    private DataSource dataSourceTweet;
     private JdbcTemplate jdbcTemplate;
 
     public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.dataSourceTweet = dataSource;
+        this.jdbcTemplate = new JdbcTemplate(this.dataSourceTweet);
     }
 
     @Override
-    public int add(TweetModel tweet) {
-        String username = getUsername();
-        String sql = "INSERT INTO tweets (tweet, user_username)" + " VALUES (?, ?)";
+    public int create(TweetModel tweet) {
+        long user_id = getUserId();
+        String sql = "INSERT INTO tweets (tweet, user_id)" + " VALUES (?, ?)";
         try {
-            return jdbcTemplate.update(sql, tweet.getTweet(), username);
+            return jdbcTemplate.update(sql, tweet.getTweet(), user_id);
         }
         catch (DataIntegrityViolationException e) {
             return 0;
@@ -86,6 +87,18 @@ public class TweetDAOImpl implements TweetDAO {
             username = principal.toString();
         }
         return username;
+    }
+    
+    public long getUserId() {
+        long userId;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userId = ((User)principal).getId();
+        } else {
+            userId = -1;
+        }
+        return userId;
     }
 
 }

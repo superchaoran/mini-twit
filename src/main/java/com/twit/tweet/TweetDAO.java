@@ -6,7 +6,7 @@ import com.twit.tweet.TweetModel;
 
 public interface TweetDAO {
 
-    int add(TweetModel tweet);
+    int create(TweetModel tweet);
     List<TweetModel> searchTweets(String search);
     List<TweetModel> searchUserTweets(String username, String search);
 }
