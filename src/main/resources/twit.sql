@@ -1,3 +1,4 @@
+DROP TABLE tweets;
 -- TABLE TWEETS
 
 CREATE TABLE tweets

@@ -25,8 +25,8 @@
     function tweet(tweet){
       var tweet = document.getElementById("tweet").value;
       $.post("${pageContext.request.contextPath}/tweet/create",{tweet:tweet,commandName:"tweetForm"}).always(function(data){
-        alert("${pageContext.request.contextPath}/tweet/create");
-    	alert(data.message);
+        /*alert("${pageContext.request.contextPath}/tweet/create");
+    	alert(data.message);*/
         window.location = "${pageContext.request.contextPath}/welcome";
       });
     }

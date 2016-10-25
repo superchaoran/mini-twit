@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class TweetController {
 
@@ -28,9 +30,11 @@ public class TweetController {
     @SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/tweet/create", method = RequestMethod.POST, produces = {"application/json","application/xml"})
     @ResponseBody
-    public ResponseEntity createTweet(@ModelAttribute("tweetForm") TweetModel tweet) {
-    	System.out.println("here");
-        int result = tweetDAO.create(tweet);
+    public ResponseEntity createTweet(@ModelAttribute("tweetForm") TweetModel tweet, HttpServletRequest request) {
+    	int userId = (int) request.getSession().getAttribute("userId");
+    	tweet.setId(userId);
+    	//System.out.println("here"+ userId);
+        int result = tweetDAO.create(new TweetModel(tweet.getTweet(),userId));
         if (result == 1) {
             return ResponseEntity.ok("{\"message\": \"Success!\"}");
         }

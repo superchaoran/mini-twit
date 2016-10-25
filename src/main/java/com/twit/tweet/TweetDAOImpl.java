@@ -27,10 +27,10 @@ public class TweetDAOImpl implements TweetDAO {
 
     @Override
     public int create(TweetModel tweet) {
-        long user_id = getUserId();
         String sql = "INSERT INTO tweets (tweet, user_id)" + " VALUES (?, ?)";
+        System.out.println(sql+tweet.getTweet()+tweet.getUser_id());
         try {
-            return jdbcTemplate.update(sql, tweet.getTweet(), user_id);
+            return jdbcTemplate.update(sql, tweet.getTweet(), tweet.getUser_id());
         }
         catch (DataIntegrityViolationException e) {
             return 0;
@@ -48,7 +48,7 @@ public class TweetDAOImpl implements TweetDAO {
 
             tweet.setId(rs.getInt("tweet_id"));
             tweet.setTweet(rs.getString("tweet"));
-            tweet.setUser_id(rs.getString("user_id"));
+            tweet.setUser_id(Integer.parseInt(rs.getString("user_id")));
 
             return tweet;
             }
@@ -68,7 +68,7 @@ public class TweetDAOImpl implements TweetDAO {
 
             tweet.setId(rs.getInt("tweet_id"));
             tweet.setTweet(rs.getString("tweet"));
-            tweet.setUser_id(rs.getString("user_username"));
+            tweet.setUser_id(Integer.parseInt(rs.getString("user_username")));
 
             return tweet;
             }
@@ -89,16 +89,4 @@ public class TweetDAOImpl implements TweetDAO {
         return username;
     }
     
-    public long getUserId() {
-        long userId;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails) {
-            userId = ((User)principal).getId();
-        } else {
-            userId = -1;
-        }
-        return userId;
-    }
-
 }

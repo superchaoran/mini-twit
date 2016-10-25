@@ -7,7 +7,7 @@ import java.util.Set;
 @Entity
 @Table(name = "user")
 public class User {
-    private Long id;
+    private int id;
     private String username;
     private String password;
     private String passwordConfirm;
@@ -15,11 +15,11 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
