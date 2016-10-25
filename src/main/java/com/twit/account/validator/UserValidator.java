@@ -29,15 +29,13 @@ public class UserValidator implements Validator {
         if (!new EmailValidator().validate(user.getUsername())) {
             errors.rejectValue("username", "Valid.userForm.Email");
         }
-        
-        
-        
+           
         if (userService.findByUsername(user.getUsername()) != null) {
             errors.rejectValue("username", "Duplicate.userForm.username");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
-        if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
+        if (user.getPassword().length() < 1 || user.getPassword().length() > 32) {
             errors.rejectValue("password", "Size.userForm.password");
         }
 
