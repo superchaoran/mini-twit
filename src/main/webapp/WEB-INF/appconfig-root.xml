@@ -9,10 +9,10 @@
     <import resource="appconfig-mvc.xml"/>
 
     <import resource="appconfig-data.xml"/>
-    
-    <import resource="appconfig-database.xml"/>
 
     <import resource="appconfig-security.xml"/>
+    
+    <import resource="appconfig-tweet.xml"/>
     
 
     <!-- Scans within the base package of the application for @Component classes to configure as beans -->

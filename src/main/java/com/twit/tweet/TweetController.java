@@ -17,16 +17,8 @@ public class TweetController {
 
     @Autowired
     private TweetDAO tweetDAO;
-    
-    
-//    @RequestMapping(value = "/tweet/create", method = RequestMethod.GET)
-//    @ResponseBody
-//    public ResponseEntity createTweet() {
-//            return ResponseEntity.ok("{\"message\": \"Success!\"}");
-//    }
-    
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-    // NEW TWEET
+    // CREATE TWEET
     @SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/tweet/create", method = RequestMethod.POST, produces = {"application/json","application/xml"})
     @ResponseBody
@@ -45,12 +37,12 @@ public class TweetController {
         
 
     // GET TWEETS OF A USER
-    @RequestMapping(value = "/tweets/{username}/formatted", method = RequestMethod.GET)
+    @RequestMapping(value = "/tweets/{user_id}/formatted", method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView tweetsUser(ModelAndView model, @PathVariable String username, @RequestParam(value = "search", defaultValue = "", required=false) String search) {
-        List<TweetModel> listTweets = tweetDAO.searchUserTweets(username, search);
-        model.addObject("listTweets", listTweets);
-        model.addObject("username", username);
+    public ModelAndView tweetsUser(ModelAndView model, @PathVariable int user_id, @RequestParam(value = "search", defaultValue = "", required=false) String search) {
+        List<TweetModel> list = tweetDAO.searchUserTweets(user_id, search);
+        model.addObject("listTweets", list);
+        model.addObject("user_id", user_id);
         model.addObject("search", search);
         model.setViewName("tweets/tweetsPage");
         return model;
@@ -59,8 +51,8 @@ public class TweetController {
     // GET TWEETS OF A USER AS JSON AND XML
     @RequestMapping(value = "/tweets/{username}", method = RequestMethod.GET, produces = {"application/json","application/xml"})
     @ResponseBody
-    public List<TweetModel> tweetsUser_XML_JSON(@PathVariable String username, @RequestParam(value = "search", defaultValue = "", required=false) String search) {
-        List<TweetModel> listTweets = tweetDAO.searchUserTweets(username, search);
+    public List<TweetModel> tweetsUser_XML_JSON(@PathVariable int user_id, @RequestParam(value = "search", defaultValue = "", required=false) String search) {
+        List<TweetModel> listTweets = tweetDAO.searchUserTweets(user_id, search);
         return listTweets;
     }
 }

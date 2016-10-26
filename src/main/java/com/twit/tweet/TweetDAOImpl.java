@@ -58,8 +58,8 @@ public class TweetDAOImpl implements TweetDAO {
     }
 
     @Override
-    public List<TweetModel> searchUserTweets(String username, String search) {
-        String sql = "SELECT * FROM tweets WHERE user_username = '"+ username+"' AND tweet LIKE '%" + search + "%' ORDER BY tweet_id DESC";
+    public List<TweetModel> searchUserTweets(int user_id, String search) {
+        String sql = "SELECT * FROM tweets WHERE user_username = '"+ user_id+"' AND tweet LIKE '%" + search + "%' ORDER BY date_created DESC";
         List<TweetModel> listTweets = jdbcTemplate.query(sql, new RowMapper<TweetModel>() {
 
             @Override

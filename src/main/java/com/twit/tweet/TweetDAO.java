@@ -8,5 +8,5 @@ public interface TweetDAO {
 
     int create(TweetModel tweet);
     List<TweetModel> searchTweets(String search);
-    List<TweetModel> searchUserTweets(String username, String search);
+    List<TweetModel> searchUserTweets(int user_id, String search);
 }
