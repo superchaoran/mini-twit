@@ -147,7 +147,7 @@
 		        <server>tomcat</server>
 		        <username>admin</username>
 		        <password>8515111q</password>
-		        <path>/twit</path>
+		        <path>/</path>
 		     </configuration>
 		 	</plugin>
         </plugins>
