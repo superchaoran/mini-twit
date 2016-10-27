@@ -1,7 +1,7 @@
 # Mini - Twit Example
 
 ## Website
-https://bidlol.com:8080/twit
+http://bidlol.com:8080/twit
 
 ## Prerequisites
 - JDK 1.8 or later
