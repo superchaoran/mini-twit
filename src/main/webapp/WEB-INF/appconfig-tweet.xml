@@ -22,8 +22,7 @@
     <bean id="tweetDAO" class="com.twit.tweet.TweetDAOImpl">
         <property name="dataSource" ref="dataSource" />
     </bean>
-
-<!--     <bean id="followDAO" class="com.micael.dao.FollowDAOImpl">
+    <bean id="followDAO" class="com.twit.follow.FollowDAOImpl">
         <property name="dataSource" ref="dataSource" />
-    </bean> -->
+    </bean>
 </beans>

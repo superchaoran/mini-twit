@@ -17,12 +17,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class TweetDAOImpl implements TweetDAO {
 
-    private DataSource dataSourceTweet;
     private JdbcTemplate jdbcTemplate;
 
     public void setDataSource(DataSource dataSource) {
-        this.dataSourceTweet = dataSource;
-        this.jdbcTemplate = new JdbcTemplate(this.dataSourceTweet);
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Override

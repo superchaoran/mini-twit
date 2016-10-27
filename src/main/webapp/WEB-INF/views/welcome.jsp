@@ -32,11 +32,13 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
-        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+        <p>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></p>
 
     </c:if>
     
     <jsp:include page="tweet/CreateTweet.jsp" />
+    <h3><a href="${pageContext.request.contextPath}/users" style="text-decoration:none; color: black;">Follow / Unfollow Users</a></h3>
+    <jsp:include page="follow/Follow.jsp" />
 
 </div>
 <!-- /container -->
