@@ -9,7 +9,7 @@
   <div style="margin-left:20%;">
     <h1 style="font-size: 70pt;">Oops!</h1>
     <h1>You are not allowed to access this page!</h1>
-    <h4 style="color: grey;">Error code: 403 - Forbidden</h4>
+    <h4 style="color: grey;">Error code: 401 - Forbidden</h4>
     <br/><br/>
     <a href="${pageContext.request.contextPath}/">Back To Home</a>
   </div>

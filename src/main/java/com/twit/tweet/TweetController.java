@@ -41,14 +41,15 @@ public class TweetController {
         model.addObject("listTweets", list);
         model.addObject("user_id", user_id);
         model.addObject("search", search);
-        model.setViewName("tweets/tweetsPage");
+        model.setViewName("tweet/DisplayTweets");
         return model;
     }
 
-    @RequestMapping(value = "/tweets/{username}", method = RequestMethod.GET, produces = {"application/json","application/xml"})
+    @RequestMapping(value = "/tweets/{user_id}", method = RequestMethod.GET, produces = {"application/json","application/xml"})
     @ResponseBody
     public List<TweetModel> tweetsUser_XML_JSON(@PathVariable int user_id, @RequestParam(value = "search", defaultValue = "", required=false) String search) {
         List<TweetModel> listTweets = tweetDAO.searchUserTweets(user_id, search);
         return listTweets;
-    }
+    }    
+    
 }

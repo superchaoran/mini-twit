@@ -1,9 +1,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-  <div>
+  <div style="max-width:384px;">
     <table>
       <tr>
-        <td><textarea id="tweet" name="tweet" maxlength="255" rows="2" cols="130"/></textarea></td>
+        <td><textarea id="tweet" name="tweet" maxlength="255" rows="2" cols="50"/></textarea></td>
       </tr>
       <tr>
         <td>

@@ -36,32 +36,47 @@
 
     </c:if>
     <br/><br/>
- 
-    <jsp:include page="tweet/CreateTweet.jsp" />
-    <br/><br/>
-    
-    <div id ="AllUsers"></div>
-    <div id ="DisplayAllUsers" style="display:none;"><a href="${pageContext.request.contextPath}/users">All Users</a></div>
-    <br/><br/>
-    
-    <div style="margin-top:15px">
-	    <div style = "float:left;">
-		    <p>List Users I Follow</p>
-		    <br/>
+ 	
+ 	
+	<div style="float:left;width:150px;">
+   		<div id ="AllUsers" style="width:150px;"></div>
+    	<div id ="DisplayAllUsers" style="display:none; width:150px;"><a href="${pageContext.request.contextPath}/users">All Users</a></div>
+   	
+	    <div style = "float:left;width:150px; margin-top:10px;">
+		    <p>List Users Follow</p>
 		    <a href="${pageContext.request.contextPath}/following.xml">XML</a>
 		    &nbsp | &nbsp
 		    <a href="${pageContext.request.contextPath}/following.json">JSON</a>
-		    <br/><br/>
 		</div>
-	    <div style = "float:left;margin-left: 50px;">
-		    <p>List My Followers</p>
-		    <br/>
+	    <div style = "float:left;width:150px;margin-top:10px;">
+		    <p>List Followers</p>
 		    <a href="${pageContext.request.contextPath}/followers.xml">XML</a>
 		    &nbsp | &nbsp
 		    <a href="${pageContext.request.contextPath}/followers.json">JSON</a>
-		    <br/><br/>
 		</div>
+   	
+   	</div>
+ 	
+ 	
+ 	<div style="float:left;">
+ 	
+
+	    <div >
+    		<jsp:include page="tweet/CreateTweet.jsp" />
+    	</div>
+
+
+	    <div style="margin-top:15px;">
+			<div id ="AllSelfTweets"></div>
+	    	<div id ="DisplayAllSelfTweets" style="display:none;"><a href="${pageContext.request.contextPath}/tweets/${user_id}/formatted">All Self Tweets</a></div>
+	    </div>
+	    <br/><br/>
+    
+
+		<br/><br/>
+		
 	</div>
+	
 
 </div>
 <!-- /container -->
@@ -73,6 +88,11 @@ $(document).ready(function() {
         $('#AllUsers').load($(this).attr('href'));
     });
     $("#DisplayAllUsers").find('a').trigger('click');
+    
+    $("#DisplayAllSelfTweets").find('a').click(function(){
+        $('#AllSelfTweets').load($(this).attr('href'));
+    });
+    $("#DisplayAllSelfTweets").find('a').trigger('click');
 
 });
 </script>

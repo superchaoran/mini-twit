@@ -47,6 +47,7 @@ public class TweetDAOImpl implements TweetDAO {
             tweet.setId(rs.getInt("tweet_id"));
             tweet.setTweet(rs.getString("tweet"));
             tweet.setUser_id(Integer.parseInt(rs.getString("user_id")));
+            System.out.println(rs.getString("date_created"));
 
             return tweet;
             }
@@ -57,7 +58,7 @@ public class TweetDAOImpl implements TweetDAO {
 
     @Override
     public List<TweetModel> searchUserTweets(int user_id, String search) {
-        String sql = "SELECT * FROM tweets WHERE user_username = '"+ user_id+"' AND tweet LIKE '%" + search + "%' ORDER BY date_created DESC";
+        String sql = "SELECT * FROM tweets WHERE user_id = "+ user_id+" AND tweet LIKE '%" + search + "%' ORDER BY date_created DESC";
         List<TweetModel> listTweets = jdbcTemplate.query(sql, new RowMapper<TweetModel>() {
 
             @Override
@@ -66,8 +67,8 @@ public class TweetDAOImpl implements TweetDAO {
 
             tweet.setId(rs.getInt("tweet_id"));
             tweet.setTweet(rs.getString("tweet"));
-            tweet.setUser_id(Integer.parseInt(rs.getString("user_username")));
-
+            tweet.setUser_id(Integer.parseInt(rs.getString("user_id")));
+            tweet.setDate(rs.getString("date_created"));
             return tweet;
             }
         });
