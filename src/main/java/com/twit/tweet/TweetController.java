@@ -18,7 +18,6 @@ public class TweetController {
     @Autowired
     private TweetDAO tweetDAO;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-    // CREATE TWEET
     @SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/tweet/create", method = RequestMethod.POST, produces = {"application/json","application/xml"})
     @ResponseBody
@@ -34,9 +33,7 @@ public class TweetController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"message\": \"Error!\"}");
         }
     }
-        
 
-    // GET TWEETS OF A USER
     @RequestMapping(value = "/tweets/{user_id}/formatted", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView tweetsUser(ModelAndView model, @PathVariable int user_id, @RequestParam(value = "search", defaultValue = "", required=false) String search) {
@@ -48,7 +45,6 @@ public class TweetController {
         return model;
     }
 
-    // GET TWEETS OF A USER AS JSON AND XML
     @RequestMapping(value = "/tweets/{username}", method = RequestMethod.GET, produces = {"application/json","application/xml"})
     @ResponseBody
     public List<TweetModel> tweetsUser_XML_JSON(@PathVariable int user_id, @RequestParam(value = "search", defaultValue = "", required=false) String search) {

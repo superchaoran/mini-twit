@@ -32,17 +32,49 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
-        <p>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></p>
+        <p>Welcome <b>User ${user_id}</b> | <a onclick="document.forms['logoutForm'].submit()">Logout</a></p>
 
     </c:if>
-    
+    <br/><br/>
+ 
     <jsp:include page="tweet/CreateTweet.jsp" />
-    <h3><a href="${pageContext.request.contextPath}/users" style="text-decoration:none; color: black;">Follow / Unfollow Users</a></h3>
-    <jsp:include page="follow/Follow.jsp" />
+    <br/><br/>
+    
+    <div id ="AllUsers"></div>
+    <div id ="DisplayAllUsers" style="display:none;"><a href="${pageContext.request.contextPath}/users">All Users</a></div>
+    <br/><br/>
+    
+    <div style="margin-top:15px">
+	    <div style = "float:left;">
+		    <p>List Users I Follow</p>
+		    <br/>
+		    <a href="${pageContext.request.contextPath}/following.xml">XML</a>
+		    &nbsp | &nbsp
+		    <a href="${pageContext.request.contextPath}/following.json">JSON</a>
+		    <br/><br/>
+		</div>
+	    <div style = "float:left;margin-left: 50px;">
+		    <p>List My Followers</p>
+		    <br/>
+		    <a href="${pageContext.request.contextPath}/followers.xml">XML</a>
+		    &nbsp | &nbsp
+		    <a href="${pageContext.request.contextPath}/followers.json">JSON</a>
+		    <br/><br/>
+		</div>
+	</div>
 
 </div>
 <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#DisplayAllUsers").find('a').click(function(){
+        $('#AllUsers').load($(this).attr('href'));
+    });
+    $("#DisplayAllUsers").find('a').trigger('click');
+
+});
+</script>
 </body>
 </html>

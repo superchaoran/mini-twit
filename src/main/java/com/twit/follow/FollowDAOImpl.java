@@ -86,7 +86,7 @@ public class FollowDAOImpl implements FollowDAO {
             @Override
             public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-            	return Integer.parseInt(rs.getString("follower"));
+            	return Integer.parseInt(rs.getString("follower_user_id"));
 
             }
         });

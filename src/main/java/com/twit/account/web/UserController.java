@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UserController {
@@ -67,14 +68,29 @@ public class UserController {
         return "login";
     }
 
+//    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
+//    public String welcome(Model model, HttpServletRequest request) {
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        UserDetails userDetail = (UserDetails) auth.getPrincipal();
+//
+//        User u = userService.findByUsername(userDetail.getUsername());
+//        request.getSession().setAttribute("userId", u.getId());
+//        return "welcome";
+//    }
+    
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model, HttpServletRequest request) {
+    public ModelAndView welcome(Model model, HttpServletRequest request) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetail = (UserDetails) auth.getPrincipal();
 
         User u = userService.findByUsername(userDetail.getUsername());
         request.getSession().setAttribute("userId", u.getId());
-        return "welcome";
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("user_id", u.getId());
+        modelAndView.setViewName("welcome");
+		return modelAndView;
     }
+    
+    
     
 }
