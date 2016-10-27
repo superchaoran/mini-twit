@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.twit.account.model.User;
+import com.twit.tweet.TweetModel;
 
 import java.util.List;
 
@@ -63,19 +64,31 @@ public class FollowController {
         return listFollowers;
     }
     
-    // FOLLOW PAGE
+    // Follow Module
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView followPage(ModelAndView model, HttpServletRequest request) {
-        UserDao followForm = new UserDao();
-        UserDao unfollowForm = new UserDao();
+        UserModel followForm = new UserModel();
+        UserModel unfollowForm = new UserModel();
         model.addObject("followForm", followForm);
         model.addObject("unfollowForm", unfollowForm);
         int userId = (int) request.getSession().getAttribute("userId");
-        List<UserDao> listUsers = followDAO.listAllUsers(userId);
+        List<UserModel> listUsers = followDAO.listAllUsers(userId);
         model.addObject("listUsers", listUsers);
 
         model.setViewName("follow/Follow");
+        return model;
+    }
+    
+    // Following tweets as XML or JSON
+    @RequestMapping(value = "/tweetsFollowing", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView followingTweets(ModelAndView model, HttpServletRequest request) {
+    	int userId = (int) request.getSession().getAttribute("userId");
+        List<TweetModel> listFollowingTweets = followDAO.listAllFollowingTweets(userId);
+        System.out.println( listFollowingTweets.size());
+        model.addObject("listFollowingTweets", listFollowingTweets);
+        model.setViewName("tweet/DisplayFollowingTweets");
         return model;
     }
 }

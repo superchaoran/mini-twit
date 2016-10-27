@@ -1,12 +1,13 @@
 package com.twit.tweet;
 
+import java.util.Comparator;
 import java.util.Date;
 
-public class TweetModel {
+public class TweetModel{
     private int id;
     private String tweet;
     private int user_id;
-    private String date;
+    private Date date;
     
     public TweetModel() {
     }
@@ -40,11 +41,11 @@ public class TweetModel {
 		this.user_id = user_id;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	

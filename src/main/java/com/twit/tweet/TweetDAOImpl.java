@@ -2,6 +2,8 @@ package com.twit.tweet;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -68,7 +70,13 @@ public class TweetDAOImpl implements TweetDAO {
             tweet.setId(rs.getInt("tweet_id"));
             tweet.setTweet(rs.getString("tweet"));
             tweet.setUser_id(Integer.parseInt(rs.getString("user_id")));
-            tweet.setDate(rs.getString("date_created"));
+            /*2016-10-27 14:24:44.0*/
+            try {
+				tweet.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.0").parse(rs.getString("date_created")));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             return tweet;
             }
         });

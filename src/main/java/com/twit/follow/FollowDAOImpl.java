@@ -2,17 +2,25 @@ package com.twit.follow;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import com.twit.tweet.*;
+
 public class FollowDAOImpl implements FollowDAO {
 
     private JdbcTemplate jdbcTemplate;
+    
+    @Autowired
+    private TweetDAO tweetDAO;
 
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -41,12 +49,12 @@ public class FollowDAOImpl implements FollowDAO {
     }
 
     @Override
-    public List<UserDao> listAllUsers(int user_id){
+    public List<UserModel> listAllUsers(int user_id){
     	String sql = "SELECT id FROM user WHERE NOT id = " + user_id + " ORDER BY id ASC";
-        List<UserDao> listUsers = jdbcTemplate.query(sql,new RowMapper<UserDao>(){
+        List<UserModel> listUsers = jdbcTemplate.query(sql,new RowMapper<UserModel>(){
         	@Override
-            public UserDao mapRow(ResultSet rs, int rowNum) throws SQLException {
-        		UserDao user = new UserDao();
+            public UserModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+        		UserModel user = new UserModel();
         		user.setId(Integer.parseInt(rs.getString("id")));
         		String sql_aux = "SELECT EXISTS(SELECT 1 FROM follows WHERE user_id = " + user.getId() + " AND follower_user_id = " + user_id + " LIMIT 1)";
                 int result = jdbcTemplate.queryForObject(sql_aux, Integer.class);
@@ -94,5 +102,17 @@ public class FollowDAOImpl implements FollowDAO {
         return listFollowers;
     }
 
-
+	@Override
+	public List<TweetModel> listAllFollowingTweets(int user_id) {
+		List<Integer> listFollowing = listFollowing (user_id);
+		System.out.println(listFollowing.size());
+		List<TweetModel> listFollowingTweets = new ArrayList<TweetModel>();
+		for(int i = 0;i<listFollowing.size();i++){
+			List<TweetModel> tempList = tweetDAO.searchUserTweets(listFollowing.get(i), "%");
+			System.out.println(tempList.size());
+			listFollowingTweets.addAll(tempList);
+		}
+		Collections.sort(listFollowingTweets, new TweetModelComparator());
+		return listFollowingTweets;
+	}
 }

@@ -1,9 +1,9 @@
 package com.twit.follow;
 
-public class UserDao {
+public class UserModel {
 	private int id;
     private boolean isFollowed;
-    UserDao(){}
+    UserModel(){}
 	public int getId() {
 		return id;
 	}
