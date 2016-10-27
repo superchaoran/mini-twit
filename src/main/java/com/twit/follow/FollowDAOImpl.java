@@ -105,11 +105,11 @@ public class FollowDAOImpl implements FollowDAO {
 	@Override
 	public List<TweetModel> listAllFollowingTweets(int user_id) {
 		List<Integer> listFollowing = listFollowing (user_id);
-		System.out.println(listFollowing.size());
+		//System.out.println(listFollowing.size());
 		List<TweetModel> listFollowingTweets = new ArrayList<TweetModel>();
 		for(int i = 0;i<listFollowing.size();i++){
 			List<TweetModel> tempList = tweetDAO.searchUserTweets(listFollowing.get(i), "%");
-			System.out.println(tempList.size());
+			//System.out.println(tempList.size());
 			listFollowingTweets.addAll(tempList);
 		}
 		Collections.sort(listFollowingTweets, new TweetModelComparator());

@@ -67,12 +67,12 @@
 
 
 		<div style="margin-top:15px;">
-		    <div style="width:200px;float:left;">
+		    <div style="width:270px;float:left;">
 				<div id ="AllSelfTweets"></div>
 		    	<div id ="DisplayAllSelfTweets" style="display:none;"><a href="${pageContext.request.contextPath}/tweets/${user_id}/formatted">All Self Tweets</a></div>
 		    </div>
 		    
-		   	<div style="margin-left:15px;width:200px;float:left;">
+		   	<div style="margin-left:15px;width:270px;float:left;">
 				<div id ="AllFollowingTweets"></div>
 		    	<div id ="DisplayAllFollowingTweets" style="display:none;"><a href="${pageContext.request.contextPath}/tweetsFollowing">All Following Tweets</a></div>
 		    </div>

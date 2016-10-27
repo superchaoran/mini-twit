@@ -3,7 +3,7 @@
   <div style="max-width:384px;">
     <table>
       <tr>
-        <td><textarea id="tweet" name="tweet" maxlength="255" rows="2" cols="50"/></textarea></td>
+        <td><textarea id="tweet" name="tweet" maxlength="255" rows="2" cols="80"/></textarea></td>
       </tr>
       <tr>
         <td>
