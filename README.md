@@ -1,7 +1,7 @@
-# Twit Example with Spring MVC 4, Spring Security, Spring Data JPA, XML Configuration, Maven, JSP, and MySQL.
+# Mini - Twit Example
 
-## Guide
-https://twit.com/registration-and-login-example-with-spring-xml-configuration-maven-jsp-and-mysql/
+## Website
+https://bidlol.com/
 
 ## Prerequisites
 - JDK 1.8 or later
@@ -14,7 +14,9 @@ https://twit.com/registration-and-login-example-with-spring-xml-configuration-ma
 - Spring Data JPA
 - Maven
 - JSP
+- JPA
 - MySQL
+- Hibernate
 
 ## Run
-```mvn jetty:run```
+- Build on tomcat 
