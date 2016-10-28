@@ -32,6 +32,8 @@ public class SecurityServiceImpl implements SecurityService{
 
     @Override
     public void autologin(String username, String password) {
+    	if(userDetailsService == null || username == null || username.isEmpty()) return;
+    	
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
 
