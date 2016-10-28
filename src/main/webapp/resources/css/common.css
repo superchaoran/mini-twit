@@ -4,12 +4,11 @@ body {
     background-color: #eee;
 }
 
-.form-signin {
-    max-width: 330px;
+ .form-signin {
+    max-width: 200px;
     padding: 15px;
     margin: 0 auto;
 }
-
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
     margin-bottom: 10px;
@@ -33,11 +32,11 @@ body {
     z-index: 2;
 }
 
-.form-signin input {
+/* .form-signin input {
     margin-top: 10px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
-}
+} */
 
 .form-signin button {
     margin-top: 10px;

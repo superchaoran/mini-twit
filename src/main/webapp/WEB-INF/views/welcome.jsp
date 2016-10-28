@@ -14,8 +14,9 @@
     <meta name="author" content="">
 
     <title>Welcome</title>
-
+	
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -25,62 +26,70 @@
     <![endif]-->
 </head>
 <body>
-<div class="container">
-
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <form id="logoutForm" method="POST" action="${contextPath}/logout">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
-
-        <p>Welcome <b>User ${user_id}</b> | <a onclick="document.forms['logoutForm'].submit()">Logout</a></p>
-
-    </c:if>
-    <br/><br/>
- 	
- 	
-	<div style="float:left;width:150px;">
-   		<div id ="AllUsers" style="width:150px;"></div>
-    	<div id ="DisplayAllUsers" style="display:none; width:150px;"><a href="${pageContext.request.contextPath}/users">All Users</a></div>
-   	
-	    <div style = "float:left;width:150px; margin-top:10px;">
-		    <p>List Users Follow</p>
-		    <a href="${pageContext.request.contextPath}/following.xml">XML</a>
-		    &nbsp | &nbsp
-		    <a href="${pageContext.request.contextPath}/following.json">JSON</a>
+<div class="container-fluid">
+ 		<div class="row-fluid">
+		 	<div class="span12">
+		    <c:if test="${pageContext.request.userPrincipal.name != null}">
+		        <form id="logoutForm" method="POST" action="${contextPath}/logout">
+		            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		        </form>
+		        <p>Welcome <b>User ${user_id}</b> | <a onclick="document.forms['logoutForm'].submit()">Logout</a></p>
+		    </c:if>
+		 	</div>
 		</div>
-	    <div style = "float:left;width:150px;margin-top:10px;">
-		    <p>List Followers</p>
-		    <a href="${pageContext.request.contextPath}/followers.xml">XML</a>
-		    &nbsp | &nbsp
-		    <a href="${pageContext.request.contextPath}/followers.json">JSON</a>
-		</div>
-   	
-   	</div>
- 	
- 	
- 	<div style="float:left;">
- 	
-
-	    <div >
-    		<jsp:include page="tweet/CreateTweet.jsp" />
-    	</div>
-
-
-		<div style="margin-top:15px;">
-		    <div style="width:270px;float:left;">
-				<div id ="AllSelfTweets"></div>
-		    	<div id ="DisplayAllSelfTweets" style="display:none;"><a href="${pageContext.request.contextPath}/tweets/${user_id}/formatted">All Self Tweets</a></div>
-		    </div>
-		    
-		   	<div style="margin-left:15px;width:270px;float:left;">
-				<div id ="AllFollowingTweets"></div>
-		    	<div id ="DisplayAllFollowingTweets" style="display:none;"><a href="${pageContext.request.contextPath}/tweetsFollowing">All Following Tweets</a></div>
-		    </div>
-	    </div>
-	</div>
 	
-
+ 		<div class="row-fluid">
+		 	<div class="span3">
+			<!-- <div style="float:left;width:150px;"> -->
+				<div class="row-fluid">
+					<div class="span12">
+				   		<div id ="AllUsers"></div>
+				    	<div id ="DisplayAllUsers" style="display:none;"><a href="${pageContext.request.contextPath}/users">All Users</a></div>
+			   		</div>
+			   	</div>
+			   	<div class="row-fluid">
+					<div class="span12">
+					    <div style = " margin-top:20px;">
+						    <p>List Users Follow</p>
+						    <a href="${pageContext.request.contextPath}/following.xml">XML</a>
+						    &nbsp | &nbsp
+						    <a href="${pageContext.request.contextPath}/following.json">JSON</a>
+						</div>
+					    <div style = "margin-top:10px;">
+						    <p>List Followers</p>
+						    <a href="${pageContext.request.contextPath}/followers.xml">XML</a>
+						    &nbsp | &nbsp
+						    <a href="${pageContext.request.contextPath}/followers.json">JSON</a>
+						</div>
+					</div>
+				</div>
+		   	</div>
+ 	
+ 	
+		 	<!-- <div style="float:left;"> -->
+		 	<div class="span9">
+		 			<div class="row-fluid">
+				 		<div class="span12">
+						    <div >
+					    		<jsp:include page="tweet/CreateTweet.jsp" />
+					    	</div>
+					    </div>
+				    </div>
+					<div class="row-fluid">
+					    <div class="span6">
+							<div id ="AllFollowingTweets"></div>
+					    	<div id ="DisplayAllFollowingTweets" style="display:none;"><a href="${pageContext.request.contextPath}/tweetsFollowing">All Following Tweets</a></div>
+					    </div>
+					    <div class="span6">
+							<div id ="AllSelfTweets"></div>
+					    	<div id ="DisplayAllSelfTweets" style="display:none;"><a href="${pageContext.request.contextPath}/tweets/${user_id}/formatted">All Self Tweets</a></div>
+					    </div>
+					    
+					 </div>
+		 	 </div>
+	    </div>
 </div>
+
 <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
