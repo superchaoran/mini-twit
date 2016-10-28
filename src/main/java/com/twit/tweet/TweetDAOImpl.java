@@ -28,7 +28,7 @@ public class TweetDAOImpl implements TweetDAO {
     @Override
     public int create(TweetModel tweet) {
         String sql = "INSERT INTO tweets (tweet, user_id)" + " VALUES (?, ?)";
-        System.out.println(sql+tweet.getTweet()+tweet.getUser_id());
+//        System.out.println(sql+tweet.getTweet()+tweet.getUser_id());
         try {
             return jdbcTemplate.update(sql, tweet.getTweet(), tweet.getUser_id());
         }
@@ -49,7 +49,7 @@ public class TweetDAOImpl implements TweetDAO {
             tweet.setId(rs.getInt("tweet_id"));
             tweet.setTweet(rs.getString("tweet"));
             tweet.setUser_id(Integer.parseInt(rs.getString("user_id")));
-            System.out.println(rs.getString("date_created"));
+//            System.out.println(rs.getString("date_created"));
 
             return tweet;
             }

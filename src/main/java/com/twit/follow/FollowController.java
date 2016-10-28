@@ -86,7 +86,6 @@ public class FollowController {
     public ModelAndView followingTweets(ModelAndView model, HttpServletRequest request) {
     	int userId = (int) request.getSession().getAttribute("userId");
         List<TweetModel> listFollowingTweets = followDAO.listAllFollowingTweets(userId);
-        System.out.println( listFollowingTweets.size());
         model.addObject("listFollowingTweets", listFollowingTweets);
         model.setViewName("tweet/DisplayFollowingTweets");
         return model;
